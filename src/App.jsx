@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Header } from "./components/Header/Header";
 import { Card } from "./components/Card/Card";
 import { UserDAO } from "./dao";
@@ -12,7 +12,7 @@ const App = () => {
     let timer;
     return function (...args) {
       const context = this;
-      if (timer) clearTimeout(timer);
+      if (timer) { clearTimeout(timer); }
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
@@ -24,6 +24,8 @@ const App = () => {
     setSearch(value);
   };
 
+  const debounceUpdateSearch = useCallback(debounce(updateSearch), []);
+
   useEffect(() => {
     UserDAO.getUsers(search).then((data) => {
       setUsers(data);
@@ -33,8 +35,7 @@ const App = () => {
   return (
     <div className="App">
       <Header
-        search={search}
-        setSearch={(value) => debounce(updateSearch(value))}
+        onChange={(value) => debounceUpdateSearch(value)}
       />
       <div className="contentList">
         {users &&
