@@ -42,7 +42,7 @@ const App = () => {
             return (
               <Card
                 key={"user-" + index}
-                image={user.picture}
+                picture={user.picture}
                 name={user.name}
                 location={user.location}
               />
