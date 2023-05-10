@@ -1,0 +1,17 @@
+.header {
+    background: #3e57db;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.title {
+    color: #fff;
+}
+
+.subtitle {
+    display: inline-block;
+    margin: 5px 0 20px;
+    opacity: 0.8;
+    font-size: 80%;
+}
